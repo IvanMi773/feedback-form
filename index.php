@@ -7,6 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <?php require('form.php') ?>
+
+<?php
+
+require ('form.php');
+require ('table.php');
+
+?>
+
 </body>
 </html>
