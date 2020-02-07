@@ -21,7 +21,7 @@ function can_upload($file) {
     // Завантажує зображення на сервер
     function make_upload($file)
     {
-        $tmp_path = '../img/';
+        $tmp_path = '../public/img/';
         $file['name'] = mt_rand(0, 10000) . $file['name'];
 
         // Ограничение по ширине в пикселях
