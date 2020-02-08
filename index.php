@@ -12,8 +12,8 @@
 
 <?php
 
-require ('form.php');
-require ('table.php');
+require('includes/form.php');
+require('includes/table.php');
 
 ?>
 

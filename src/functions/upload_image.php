@@ -24,47 +24,42 @@ function can_upload($file) {
         $tmp_path = '../public/img/';
         $file['name'] = mt_rand(0, 10000) . $file['name'];
 
-        // Ограничение по ширине в пикселях
-        $max_size = 300;
-
-        // Cоздаём исходное изображение на основе исходного файла
+        // Створюємо вихідне зображення на основі вихідного файлу
         if ($file ['type'] == 'image/jpeg')
-            $source = imagecreatefromjpeg($file['tmp_name']);
+            $src = imagecreatefromjpeg($file['tmp_name']);
         elseif ($file ['type'] == 'image/png')
-            $source = imagecreatefrompng($file ['tmp_name']);
+            $src = imagecreatefrompng($file ['tmp_name']);
         else
             return false;
 
-        $src = $source;
-
-        // Определяем ширину и высоту изображения
+        // Визначаємо висоту і шарину зображення
         $w_src = imagesx($src);
         $h_src = imagesy($src);
 
-        // В зависимости от типа (эскиз или большое изображение) устанавливаем ограничение по ширине.
-        $w = $max_size;
+        // Обмеження по ширині в пікселях
+        $w = 300;
 
-        // Если ширина больше заданной
+        // Якщо ширина більше заданої
         if ($w_src > $w) {
-            // Вычисление пропорций
+            // Вирахування пропорцій
             $ratio = $w_src / $w;
             $w_dest = round($w_src / $ratio);
             $h_dest = round($h_src / $ratio);
 
-            // Создаём пустую картинку
+            // Створюємо пусту картинку
             $dest = imagecreatetruecolor($w_dest, $h_dest);
 
-            // Копируем старое изображение в новое с изменением параметров
+            // Копіюємо старе зображення в нове, зі зміною параметрів
             imagecopyresampled($dest, $src, 0, 0, 0, 0, $w_dest, $h_dest, $w_src, $h_src);
 
-            // Вывод картинки и очистка памяти
+            // Вивід картинки і очишчення памяті
             imagejpeg($dest, $tmp_path . $file['name']);
             imagedestroy($dest);
             imagedestroy($src);
 
             return $file['name'];
         } else {
-            // Вывод картинки и очистка памяти
+            // Вивід картинки і очишчення памяті
             imagejpeg($src, $tmp_path . $file['name']);
             imagedestroy($src);
 

@@ -1,4 +1,4 @@
-<form action="database/form_action.php" method="post" id="form" enctype="multipart/form-data">
+<form action="./src/save_data.php" method="post" id="form" enctype="multipart/form-data">
     <h1>Форма зворотнього звязку</h1>
     <input type="text" name="first_name" id="field" placeholder="Введіть ім'я"><br>
     <input type="text" name="last_name" id="field" placeholder="Введіть прізвище"><br>
